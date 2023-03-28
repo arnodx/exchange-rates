@@ -34,15 +34,15 @@ export class MainComponent implements OnInit {
     ).subscribe(exchangeRate =>this.exchangeRates=exchangeRate)
   }
 
-  next() {
+  next():void  {
     this.first = this.first + this.rows;
   }
 
-  prev() {
+  prev():void  {
     this.first = this.first - this.rows;
   }
 
-  reset() {
+  reset():void {
     this.first = 0;
   }
 
@@ -57,7 +57,7 @@ export class MainComponent implements OnInit {
   changeTheme(event:any) {
     this.themeService.switchTheme(event.value);
   }
-  filterExchangeRateByDate(date:Date) {
+  filterExchangeRateByDate(date:Date):void {
     if(moment(date).isValid()){
       const formatedDate = moment(date).format("YYYY-MM-DD")
       this.exchangeRatesService.getExchangeRatesByDate(formatedDate).pipe(
@@ -66,7 +66,7 @@ export class MainComponent implements OnInit {
     }
   }
 
-  clearFilterExchangeRate() {
+  clearFilterExchangeRate(): void {
     this.exchangeRatesService.getExchangeRatesForToday().pipe(
       map(exchangeRate => exchangeRate[0].rates)
     ).subscribe(exchangeRate =>this.exchangeRates=exchangeRate)
